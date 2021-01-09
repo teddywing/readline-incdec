@@ -1,0 +1,4 @@
+Readline bindings to increment and decrement a number on the command line, like Vim's <C-a> and <C-x>.
+
+2021.01.03:
+Try C-c and replace the number in a new shell line

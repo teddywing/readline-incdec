@@ -1,0 +1,21 @@
+function incdec {
+	local EX_DATAERR=65
+
+	# Portion of the line from point to the end of the line.
+	local line_part="${READLINE_LINE:$READLINE_POINT}"
+
+	# Number to increment.
+	local number=
+
+	# If the line part doesn't contain a number, exit.
+	if ! [[ "$line_part" =~ ([0-9]+) ]]; then
+		return $EX_DATAERR
+	fi
+
+	number=${BASH_REMATCH[1]}
+
+	echo "$(($number + 1))"
+}
+
+# bind -x '"\C-xa+":incdec'
+# bind '"\C-xaa":\C-xa+'
