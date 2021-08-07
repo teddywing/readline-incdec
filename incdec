@@ -17,5 +17,23 @@ function incdec {
 	echo "$(($number + 1))"
 }
 
+function __readline_incdec_incdec2 {
+	# echo "!!"
+	echo !#
+}
+
 # bind -x '"\C-xa+":incdec'
 # bind '"\C-xaa":\C-xa+'
+
+function __readline_incdec_save_readline_point {
+	__readline_incdec_readline_point="$READLINE_POINT"
+}
+
+bind -x '"\C-xasrp": __readline_incdec_save_readline_point'
+
+# bind '"\C-xaa": \C-xasrp\C-c$(__readline_incdec_incdec2)\e\C-e'
+# bind '"\C-xaa": \C-xasrp'
+bind '"\C-xaa": __readline_incdec_incdec2'
+
+
+# 2021.01.15: Idea: Maybe try using $EDITOR
