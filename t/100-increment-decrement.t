@@ -26,6 +26,12 @@ is(
 );
 
 is(
+	incdec::incdec('test 19 0', 6),
+	'test 20 0',
+	'increments the first integer with point at position 6'
+);
+
+is(
 	incdec::incdec('test 12 0', 7),
 	'test 12 1',
 	'increments the second integer with point at position 7'
