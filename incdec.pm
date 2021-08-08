@@ -9,6 +9,13 @@ sub incdec {
 	$point_position ||= 0;
 	$is_backward ||= 0;
 
+	$line =~ /(\d+)/;
+	# print $-[0] . ':' . $+[0] . ';' . $point_position;
+
+	if ($-[0] <= $point_position || $point_position <= $+[0]) {
+		$point_position = $-[0];
+	}
+
 	my $line_part = substr $line, $point_position;
 
 	$line_part =~ s/(\d+)/$1+1/e;
