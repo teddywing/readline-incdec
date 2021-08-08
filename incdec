@@ -14,15 +14,23 @@ function incdec {
 
 	number=${BASH_REMATCH[1]}
 
-	echo "${READLINE_LINE}"
-	echo "${BASH_REMATCH[0]}"
-	echo "$(($number + 1))"
+	# echo "${READLINE_LINE}"
+	# echo "${BASH_REMATCH[0]}"
+	# echo "$(($number + 1))"
+
+	incremented_line="$(echo "$line_part" | perl -pe 's/(\d+)/$1+1/e')"
+
+	printf "${READLINE_LINE:0:$READLINE_POINT}$incremented_line"
 }
 
 function __readline_incdec_incdec2 {
 	# echo "!!"
 	echo !#
 }
+
+# function __readline_incdec_perl {
+# 	perl 
+# }
 
 bind -x '"\C-xa+":incdec'
 # bind '"\C-xaa":\C-xa+'
