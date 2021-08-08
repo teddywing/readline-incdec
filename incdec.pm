@@ -9,7 +9,13 @@ sub incdec {
 	$point_position ||= 0;
 	$is_backward ||= 0;
 
-	$line =~ s/(\d+)/$1+1/e;
+	my $line_part = substr $line, $point_position;
+
+	$line_part =~ s/(\d+)/$1+1/e;
+
+	my $line_excluded = substr $line, 0, $point_position;
+
+	$line = $line_excluded . $line_part;
 
 	return $line;
 }
