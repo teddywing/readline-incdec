@@ -10,9 +10,8 @@ sub incdec {
 	$is_backward ||= 0;
 
 	$line =~ /(\d+)/;
-	# print $-[0] . ':' . $+[0] . ';' . $point_position;
 
-	if ($-[0] <= $point_position || $point_position <= $+[0]) {
+	if ($-[0] <= $point_position && $point_position < $+[0]) {
 		$point_position = $-[0];
 	}
 
