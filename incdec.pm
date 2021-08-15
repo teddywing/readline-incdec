@@ -41,6 +41,25 @@ sub incdec {
 		}
 	}
 
+	# Idea: Loop through @- and @+ to find @- <= point < @+
+	$point_position = $original_point_position;
+	my @matches = $line =~ /(\d+)/g;
+	print "[[@matches]]";
+	# for (my $i = 0; $i < scalar @+ - 1; $i++) {
+	# 	print "..$-[$i]:$+[$i]..$point_position..";
+	# 	if ($point_position < $+[$i + 1]) {
+	# 		print "x[$matches[$i]]x";
+	# 	}
+	# }
+	for (my $i = 0; $i < scalar @- - 1; $i++) {
+		print "..$-[$i + 1]:$+[$i]..$point_position..";
+		if ($point_position > $+[$i] && $point_position <= $-[$i + 1]) {
+			print "x[$matches[$i]]x";
+		}
+	}
+
+	# Final match, final match before point
+
 	$line_part =~ s/(\d+)/$1+1/e;
 
 	my $line_excluded = substr $line_start, 0, $original_point_position;
