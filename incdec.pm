@@ -25,10 +25,10 @@ sub incdec {
 		}
 
 		if ($point_position >= $+[0]) {
-			$line_start .= substr($line_part, $previous_point_position, $+[0]);
+			$line_start .= substr($line_part, 0, $+[0]);
 			$line_part = substr($line_part, $+[0]);
 			$previous_point_position = $point_position;
-			$point_position = 0;
+			$point_position -= $+[0];
 
 			next;
 		}
