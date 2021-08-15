@@ -17,13 +17,21 @@ sub incdec {
 	my $line_part = $line;
 	while ($point_position < length($line_part)) {
 		$line_part =~ /(\d+)/;
+
+		# If `$point_position` is within the matched number, we can stop.
 		if ($-[0] <= $point_position && $point_position < $+[0]) {
 			last;
 		}
 
+		# Continue the loop if point is further right than the end of the match.
 		if ($point_position >= $+[0]) {
+			# Store the line part that we don't increment so we can include it at the end.
 			$line_start .= substr($line_part, 0, $+[0]);
+
+			# Match starting in the next part of the string next iteration.
 			$line_part = substr($line_part, $+[0]);
+
+			# Adjust point position according to the new line part.
 			$point_position -= $+[0];
 
 			next;
