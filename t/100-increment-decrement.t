@@ -43,4 +43,10 @@ is(
 	'increments the second double-digit integer with point at position 9'
 );
 
+is(
+	incdec::incdec('test 12 19 555', 12),
+	'test 12 19 556',
+	'increments the third triple-digit integer with point at position 12'
+);
+
 done_testing;
