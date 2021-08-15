@@ -18,8 +18,6 @@ sub incdec {
 	while ($point_position < length($line_part)) {
 		$line_part =~ /(\d+)/;
 		if ($-[0] <= $point_position && $point_position < $+[0]) {
-			$point_position = $-[0];
-
 			last;
 		}
 
