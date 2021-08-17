@@ -45,6 +45,7 @@ sub incdec {
 	$point_position = $original_point_position;
 	my @matches = $line =~ /(\d+)/g;
 	print "[[@matches]]";
+	# TODO: @- and @+ hold a list of captured groups. You need to loop through matches to get positions for each match with $-+[0]. It doesn't give you a list of positions of all matches.
 	print "-[[@-]]-.+[[@+]]+";
 	# for (my $i = 0; $i < scalar @+ - 1; $i++) {
 	# 	print "..$-[$i]:$+[$i]..$point_position..";
