@@ -45,17 +45,35 @@ sub incdec {
 	$point_position = $original_point_position;
 	my @matches = $line =~ /(\d+)/g;
 	print "[[@matches]]";
+	print "-[[@-]]-.+[[@+]]+";
 	# for (my $i = 0; $i < scalar @+ - 1; $i++) {
 	# 	print "..$-[$i]:$+[$i]..$point_position..";
 	# 	if ($point_position < $+[$i + 1]) {
 	# 		print "x[$matches[$i]]x";
 	# 	}
 	# }
-	for (my $i = 0; $i < scalar @- - 1; $i++) {
-		print "..$-[$i + 1]:$+[$i]..$point_position..";
-		if ($point_position > $+[$i] && $point_position <= $-[$i + 1]) {
+	# for (my $i = 0; $i < scalar @- - 1; $i++) {
+	# 	print "..$-[$i + 1]:$+[$i]..$point_position..";
+	# 	if ($point_position > $+[$i] && $point_position <= $-[$i + 1]) {
+	# 		print "x[$matches[$i]]x";
+	# 	}
+	# }
+	# for (my $i = scalar @+ - 1; $i > 0; $i--) {
+	# 	print "..i[$i]..+[$+[$i]]..pos[$point_position]..";
+	# 	if ($point_position < $+[$i]) {
+	# 		print "x[$matches[$i - 1]]x";
+	# 	}
+	# }
+
+	my $i = 0;
+	while ($line =~ /(\d+)/g) {
+		my $pos = pos $line;
+		print "..+[@+]..perlpos[:$pos]..pos[$point_position]..";
+		if ($point_position < $+) {
 			print "x[$matches[$i]]x";
 		}
+
+		$i++;
 	}
 
 	# Final match, final match before point
