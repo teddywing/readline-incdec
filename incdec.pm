@@ -46,7 +46,7 @@ sub incdec {
 	my @matches = $line =~ /(\d+)/g;
 	print "[[@matches]]";
 	# TODO: @- and @+ hold a list of captured groups. You need to loop through matches to get positions for each match with $-+[0]. It doesn't give you a list of positions of all matches.
-	print "-[[@-]]-.+[[@+]]+";
+	# print "-[[@-]]-.+[[@+]]+";
 	# for (my $i = 0; $i < scalar @+ - 1; $i++) {
 	# 	print "..$-[$i]:$+[$i]..$point_position..";
 	# 	if ($point_position < $+[$i + 1]) {
@@ -67,15 +67,21 @@ sub incdec {
 	# }
 
 	my $i = 0;
+	my $start_position = 0;
 	while ($line =~ /(\d+)/g) {
 		my $pos = pos $line;
-		print "..+[@+]..perlpos[:$pos]..pos[$point_position]..";
-		if ($point_position < $+) {
-			print "x[$matches[$i]]x";
+		print "\n-[$-[0]]-+[$+[0]]+\n";
+		# print "..+[@+]..perlpos[:$pos]..pos[$point_position]..";
+		if ($point_position < $+[0]) {
+			print "//[$matches[$i]]//";
+			$start_position = $-[0];
+
+			last;
 		}
 
 		$i++;
 	}
+	print "\npos[$start_position]\n";
 
 	# Final match, final match before point
 
