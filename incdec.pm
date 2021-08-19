@@ -10,19 +10,12 @@ sub incdec {
 	$is_backward ||= 0;
 
 	my $start_position = 0;
-	my @points = ();
 	my $previous_match_start = 0;
 	my $previous_match_end = 0;
-	print "$line\n";
 	while ($line =~ /(\d+)/g) {
 		if ($is_backward) {
-			print "pos[$point_position] -[$-[0]]- +[$+[0]]+\n";
-			print "pos[$point_position] -[$previous_match_start]- +[$previous_match_end]+\n";
-			# if $point_position < $-[0]
-			# && previous $+[0] <= $point_position
-			if ($previous_match_end - 1 <= $point_position && $point_position < $-[0]) {
-			# if ($-[0] <= $point_position && $point_position < $+[0]) {
-				print "matched at $-[0];$previous_match_end\n";
+			if ($previous_match_end - 1 <= $point_position
+					&& $point_position < $-[0]) {
 				$start_position = $previous_match_start;
 
 				last;
@@ -32,11 +25,11 @@ sub incdec {
 			$previous_match_end = $+[0];
 		}
 		else {
-		if ($point_position < $+[0]) {
-			$start_position = $-[0];
+			if ($point_position < $+[0]) {
+				$start_position = $-[0];
 
-			last;
-		}
+				last;
+			}
 		}
 	}
 
