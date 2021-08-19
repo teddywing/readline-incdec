@@ -12,17 +12,22 @@ sub incdec {
 	my $start_position = 0;
 	my @points = ();
 	my $previous_match_start = 0;
+	my $previous_match_end = 0;
 	while ($line =~ /(\d+)/g) {
 		if ($is_backward) {
-			$previous_match_start = $-[0];
-
+			# print "pos[$point_position] -[$-[0]]- +[$+[0]]+\n";
 			# if $point_position < $-[0]
 			# && previous $+[0] <= $point_position
-			# if ($point_position >= $-[0]) {
-			# 	$start_position = $-[0];
-            #
-			# 	last;
-			# }
+			# if ($previous_match_end <= $point_position && $point_position < $-[0]) {
+			if ($-[0] <= $point_position && $point_position < $+[0]) {
+				# print "matched";
+				$start_position = $-[0];
+
+				last;
+			}
+
+			$previous_match_start = $-[0];
+			$previous_match_end = $+[0];
 		}
 		else {
 		if ($point_position < $+[0]) {
