@@ -58,7 +58,7 @@ is(
 is(
 	incdec::incdec('test 12 19 555 64', 17, 1),
 	'test 12 19 555 65',
-	'increments the fourth double-digit integer with point at position 16 backward'
+	'increments the fourth double-digit integer with point at position 17 backward'
 );
 
 is(
