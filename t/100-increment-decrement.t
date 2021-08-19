@@ -50,6 +50,12 @@ is(
 );
 
 is(
+	incdec::incdec('test 12 19 555', 7, 9),
+	'test 12 26 555',
+	'increments the second double-digit integer by 7 with point at position 9'
+);
+
+is(
 	incdec::incdec('test 12 19 555 64', 1, 16),
 	'test 12 19 555 65',
 	'increments the fourth double-digit integer with point at position 16'
@@ -74,6 +80,12 @@ is(
 );
 
 is(
+	incdec::incdec('test 12 982 4 ', 1, 14, 1),
+	'test 12 982 5 ',
+	'increments the third integer with point at position 14 backward'
+);
+
+is(
 	incdec::incdec('test 12', -1),
 	'test 11',
 	'decrements the first integer'
@@ -95,6 +107,18 @@ is(
 	incdec::incdec('test 12 982 4', -1, 9, 1),
 	'test 12 981 4',
 	'decrements the second integer with point at position 9 backward'
+);
+
+is(
+	incdec::incdec('test 12 982 4', -5, 8, 1),
+	'test 12 977 4',
+	'decrements the second integer by 5 with point at position 8 backward'
+);
+
+is(
+	incdec::incdec('test 12 1 4', -2, 9, 1),
+	'test 12 -1 4',
+	'decrements the second integer by 2 with point at position 9 backward'
 );
 
 done_testing;
