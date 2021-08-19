@@ -10,12 +10,31 @@ sub incdec {
 	$is_backward ||= 0;
 
 	my $start_position = 0;
+	my @points = ();
+	my $previous_match_start = 0;
 	while ($line =~ /(\d+)/g) {
+		if ($is_backward) {
+			$previous_match_start = $-[0];
+
+			# if $point_position < $-[0]
+			# && previous $+[0] <= $point_position
+			# if ($point_position >= $-[0]) {
+			# 	$start_position = $-[0];
+            #
+			# 	last;
+			# }
+		}
+		else {
 		if ($point_position < $+[0]) {
 			$start_position = $-[0];
 
 			last;
 		}
+		}
+	}
+
+	if ($is_backward) {
+		$start_position = $previous_match_start;
 	}
 
 	pos($line) = $start_position;

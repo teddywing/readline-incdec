@@ -55,4 +55,10 @@ is(
 	'increments the fourth double-digit integer with point at position 16'
 );
 
+is(
+	incdec::incdec('test 12 19 555 64', 17, 1),
+	'test 12 19 555 65',
+	'increments the fourth double-digit integer with point at position 16 backward'
+);
+
 done_testing;
