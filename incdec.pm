@@ -33,7 +33,7 @@ sub incdec {
 		}
 	}
 
-	if ($is_backward) {
+	if ($is_backward && $point_position == length $line) {
 		$start_position = $previous_match_start;
 	}
 
