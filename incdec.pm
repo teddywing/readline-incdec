@@ -4,7 +4,7 @@ use warnings;
 package incdec;
 
 sub incdec {
-	my ($line, $point_position, $is_backward) = @_;
+	my ($line, $increment_by, $point_position, $is_backward) = @_;
 
 	$point_position ||= 0;
 	$is_backward ||= 0;
@@ -38,7 +38,7 @@ sub incdec {
 	}
 
 	pos($line) = $start_position;
-	$line =~ s/\G([^\d]*)(\d+)/$1 . ($2 + 1)/e;
+	$line =~ s/\G([^\d]*)(\d+)/$1 . ($2 + $increment_by)/e;
 
 	return $line;
 }
