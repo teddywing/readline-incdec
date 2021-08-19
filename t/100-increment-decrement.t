@@ -67,4 +67,10 @@ is(
 	'increments the third triple-digit integer with point at position 13 backward'
 );
 
+is(
+	incdec::incdec('test 12 19 555 64', 14, 1),
+	'test 12 19 556 64',
+	'increments the third triple-digit integer with point at position 14 backward'
+);
+
 done_testing;
