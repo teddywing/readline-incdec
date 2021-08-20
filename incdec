@@ -51,3 +51,5 @@ bind -x '"\C-xasrp": __readline_incdec_save_readline_point'
 
 
 # 2021.01.15: Idea: Maybe try using $EDITOR
+
+# 2021.08.20: Idea: If point is at start, use forward matching, if point is at end, use backward matching
