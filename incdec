@@ -34,7 +34,7 @@ function __readline_incdec_incdec2 {
 # 	perl 
 # }
 
-bind -x '"\C-xa+":incdec'
+# bind -x '"\C-xa+":incdec'
 # bind '"\C-xa+": "\C-e$(incdec)\e\C-e"'
 # bind '"\C-xa+": "\C-e`incdec`"'
 # bind '"\C-xaa":\C-xa+'
@@ -48,6 +48,74 @@ bind -x '"\C-xasrp": __readline_incdec_save_readline_point'
 # bind '"\C-xaa": \C-xasrp\C-c$(__readline_incdec_incdec2)\e\C-e'
 # bind '"\C-xaa": \C-xasrp'
 # bind '"\C-xaa": __readline_incdec_incdec2'
+
+function __readline_incdec {
+	local increment_by="$1"
+	local backward="$2"
+
+	# local incdec = 
+	# 	print "$line, ${"increment-by"}, ${"point-position"}, $backward";
+
+	line=$(perl -s -e '
+sub incdec {
+	my ($line, $increment_by, $point_position, $is_backward) = @_;
+
+	$point_position ||= 0;
+	$is_backward ||= 0;
+
+	my $start_position = 0;
+	my $previous_match_start = 0;
+	while ($line =~ /(\d+)/g) {
+		if ($is_backward) {
+			if ($point_position < $-[0]) {
+				$start_position = $previous_match_start;
+
+				last;
+			}
+
+			$previous_match_start = $-[0];
+
+		}
+		else {
+			if ($point_position < $+[0]) {
+				$start_position = $-[0];
+
+				last;
+			}
+		}
+	}
+
+	if ($is_backward && $point_position == length $line) {
+		$start_position = $previous_match_start;
+	}
+
+	pos($line) = $start_position;
+	$line =~ s/\G([^\d]*)(\d+)/$1 . ($2 + $increment_by)/e;
+
+	return $line;
+}
+
+		# print "$line, ${\"increment-by\"}, ${\"point-position\"}, $backward";
+		my $output = incdec($line, ${"increment-by"}, ${"point-position"}, $backward);
+		print $output;
+' \
+		-- \
+		-line="$READLINE_LINE" \
+		-increment-by="$increment_by" \
+		-point-position="$READLINE_POINT" \
+		-backward="$backward"
+	)
+
+	# echo "$line"
+
+	READLINE_LINE="$line"
+}
+
+function __readline_incdec_increment {
+	__readline_incdec 1 1
+}
+
+bind -x '"\C-xa+": __readline_incdec_increment'
 
 
 # 2021.01.15: Idea: Maybe try using $EDITOR
