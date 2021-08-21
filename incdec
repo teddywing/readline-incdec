@@ -115,7 +115,8 @@ function __readline_incdec_increment {
 	__readline_incdec 1 1
 }
 
-bind -x '"\C-xa+": __readline_incdec_increment'
+bind -x '"\C-x-": __readline_incdec -1 1'
+bind -x '"\C-x+": __readline_incdec_increment'
 
 
 # 2021.01.15: Idea: Maybe try using $EDITOR
