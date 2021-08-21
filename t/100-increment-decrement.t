@@ -98,6 +98,18 @@ is(
 );
 
 is(
+	incdec::incdec('test 1 -2', 1, 8, 1),
+	'test 1 -1',
+	'increments the second negative integer with point at position 8 backward'
+);
+
+is(
+	incdec::incdec('test 1 -2', -1, 8, 1),
+	'test 1 -3',
+	'decrements the second negative integer with point at position 8 backward'
+);
+
+is(
 	incdec::incdec('test 12', -1),
 	'test 11',
 	'decrements the first integer'
