@@ -13,7 +13,7 @@ sub incdec {
 	# my @match_ranges;
 	my $previous_match_start = 0;
 	# my $previous_match_end = 0;
-	while ($line =~ /(\d+)/g) {
+	while ($line =~ /\b(-?\d+)\b/g) {
 		if ($is_backward) {
 			# print "p[$point_position] -[$-[0]] +[$+[0]]\n";
 			# print "p[$point_position] -[$previous_match_start] +[$previous_match_end]\n";
@@ -48,7 +48,7 @@ sub incdec {
 	}
 
 	pos($line) = $start_position;
-	$line =~ s/\G([^\d]*)(\d+)/$1 . ($2 + $increment_by)/e;
+	$line =~ s/\G([^-\d]*)(-?\d+)/$1 . ($2 + $increment_by)/e;
 
 	return $line;
 }
