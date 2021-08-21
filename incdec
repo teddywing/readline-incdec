@@ -109,6 +109,8 @@ sub incdec {
 	# echo "$line"
 
 	READLINE_LINE="$line"
+
+	# TODO: If point was at the end, put it at the end again. The length of he line may have changed.
 }
 
 function __readline_incdec_increment {
