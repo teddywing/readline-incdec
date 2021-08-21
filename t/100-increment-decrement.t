@@ -92,6 +92,12 @@ is(
 );
 
 is(
+	incdec::incdec('test -1 ', -1, 7, 1),
+	'test -2 ',
+	'decrements the negative integer with point at position 7 backward'
+);
+
+is(
 	incdec::incdec('test 12', -1),
 	'test 11',
 	'decrements the first integer'
