@@ -23,7 +23,15 @@ sub incdec {
 			# 		&& $point_position < $-[0]) {
 
 			# Try always setting $start_position and resetting it if there's another number?
+			# TODO: document, last number handling
+
+			# Set start position to the current match start. This gives us the
+			# correct start position when incrementing the last number in a
+			# line.
 			$start_position = $-[0];
+
+			# If point is not at the end, set start position to the number
+			# closest to the point position.
 			if ($point_position < $-[0]) {
 				# print "match at [$previous_match_start]";
 				$start_position = $previous_match_start;
