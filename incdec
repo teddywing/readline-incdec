@@ -123,6 +123,8 @@ sub incdec {
 	READLINE_LINE="$line"
 
 	# TODO: If point was at the end, put it at the end again. The length of he line may have changed.
+
+	# TODO 2021.08.22: If new READLINE_LINE is longer, move point to the right. If shorter, move it to the left.
 }
 
 function __readline_incdec_increment {
