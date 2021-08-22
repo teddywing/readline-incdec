@@ -12,15 +12,18 @@ sub incdec {
 	my $start_position = 0;
 	# my @match_ranges;
 	my $previous_match_start = 0;
-	# my $previous_match_end = 0;
-	while ($line =~ /\b(-?\d+)\b/g) {
+	my $previous_match_end = 0;
+	while ($line =~ /(-?\d+)/g) {
 		if ($is_backward) {
-			# print "p[$point_position] -[$-[0]] +[$+[0]]\n";
-			# print "p[$point_position] -[$previous_match_start] +[$previous_match_end]\n";
+			print "p[$point_position] -[$-[0]] +[$+[0]]\n";
+			print "p[$point_position] -[$previous_match_start] +[$previous_match_end]\n";
 			# print "last match: $^N\n";
-			# print $previous_match_end - 1 . " <= $point_position < $-[0]\n";
+			print $previous_match_end - 1 . " <= $point_position < $-[0]\n";
 			# if ($previous_match_end - 1 <= $point_position
 			# 		&& $point_position < $-[0]) {
+
+			# Try always setting $start_position and resetting it if there's another number?
+			$start_position = $-[0];
 			if ($point_position < $-[0]) {
 				# print "match at [$previous_match_start]";
 				$start_position = $previous_match_start;
@@ -29,7 +32,7 @@ sub incdec {
 			}
 
 			$previous_match_start = $-[0];
-			# $previous_match_end = $+[0];
+			$previous_match_end = $+[0];
 
 			# my @range = ($-[0], $+[0]);
 			# push @match_ranges, \@range;
@@ -41,10 +44,6 @@ sub incdec {
 				last;
 			}
 		}
-	}
-
-	if ($is_backward && $point_position == length $line) {
-		$start_position = $previous_match_start;
 	}
 
 	pos($line) = $start_position;
