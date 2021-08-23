@@ -57,9 +57,6 @@ function __readline_incdec {
 	# 	print "$line, ${"increment-by"}, ${"point-position"}, $backward";
 
 	line=$(perl -s -e '
-use strict;
-use warnings;
-
 sub incdec {
 	my ($line, $increment_by, $point_position, $is_backward) = @_;
 
