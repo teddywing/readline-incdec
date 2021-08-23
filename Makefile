@@ -8,5 +8,5 @@ incdec.pl: incdec.pl.m4 incdec.pm
 	m4 $< > $@
 	rm incdec.sub.pl
 
-incdec: incdec.m4 incdec.pl
-	m4 $< > $@
+incdec: incdec.m4.bash incdec.pl
+	m4 $< --define="INCLUDE_INCDEC_PL=include(\`incdec.pl')dnl" > $@

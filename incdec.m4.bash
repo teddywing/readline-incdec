@@ -57,7 +57,7 @@ function __readline_incdec {
 	# 	print "$line, ${"increment-by"}, ${"point-position"}, $backward";
 
 	line=$(perl -s -e '
-include(`incdec.pl')dnl
+INCLUDE_INCDEC_PL
 ' \
 		-- \
 		-line="$READLINE_LINE" \
