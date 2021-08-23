@@ -7,3 +7,6 @@ incdec.pl: incdec.pl.m4 incdec.pm
 	sed -n '/sub incdec {/,/^}/p' incdec.pm > incdec.sub.pl
 	m4 $< > $@
 	rm incdec.sub.pl
+
+incdec: incdec.m4 incdec.pl
+	m4 $< > $@
