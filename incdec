@@ -85,5 +85,5 @@ function __readline_incdec_decrement {
 	fi
 }
 
-bind -x '"\C-x-": __readline_incdec_decrement'
-bind -x '"\C-x+": __readline_incdec_increment'
+bind -x '"\C-xx": __readline_incdec_decrement'
+bind -x '"\C-xa": __readline_incdec_increment'
