@@ -1,3 +1,4 @@
+# Increment or decrement a number on the current line.
 function __readline_incdec {
 	local increment_by="$1"
 	local backward="$2"
@@ -15,6 +16,7 @@ INCLUDE_INCDEC_PL
 	READLINE_LINE="$line"
 }
 
+# Increment the nearest number to the left of point by 1.
 function __readline_incdec_increment {
 	local old_line_length="${#READLINE_LINE}"
 
@@ -22,11 +24,13 @@ function __readline_incdec_increment {
 
 	local new_line_length="${#READLINE_LINE}"
 
+	# If a negative sign was removed, keep point where it was.
 	if [ "$old_line_length" -gt "$new_line_length" ]; then
 		READLINE_POINT="$(($READLINE_POINT - 1))"
 	fi
 }
 
+# Decrement the nearest number to the left of point by 1.
 function __readline_incdec_decrement {
 	local old_line_length="${#READLINE_LINE}"
 
@@ -34,6 +38,7 @@ function __readline_incdec_decrement {
 
 	local new_line_length="${#READLINE_LINE}"
 
+	# If a negative sign was added, keep point where it was.
 	if [ "$old_line_length" -lt "$new_line_length" ]; then
 		READLINE_POINT="$(($READLINE_POINT + 1))"
 	fi
