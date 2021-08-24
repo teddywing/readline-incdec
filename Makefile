@@ -17,10 +17,10 @@
 
 
 .PHONY: all
-all: incdec
+all: incdec.bash
 
 
-incdec: incdec.m4.bash incdec.pl
+incdec.bash: incdec.m4.bash incdec.pl
 	m4 --define="INCLUDE_INCDEC_PL=include(\`incdec.pl')dnl" $< > $@
 
 incdec.pl: incdec.m4.pl incdec.pm
