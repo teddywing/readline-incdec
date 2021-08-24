@@ -5,9 +5,9 @@ all: incdec
 incdec: incdec.m4.bash incdec.pl
 	m4 --define="INCLUDE_INCDEC_PL=include(\`incdec.pl')dnl" $< > $@
 
-incdec.pl: incdec.pl.m4 incdec.pm
+incdec.pl: incdec.m4.pl incdec.pm
 	sed -n '/sub incdec {/,/^}/p' incdec.pm > incdec.sub.pl
-	m4 $< > $@
+	m4 --define="INCLUDE_INCDEC_SUBROUTINE=include(\`incdec.sub.pl')dnl" $< > $@
 	rm incdec.sub.pl
 
 
