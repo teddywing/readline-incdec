@@ -15,6 +15,8 @@
 # You should have received a copy of the GNU General Public License
 # along with Incdec. If not, see <https://www.gnu.org/licenses/>.
 
+# Version: 0.0.1
+
 
 bind -x '"\C-xx": __readline_incdec_decrement'
 bind -x '"\C-xa": __readline_incdec_increment'
