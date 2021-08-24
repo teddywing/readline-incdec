@@ -102,6 +102,3 @@ function __readline_incdec_decrement {
 		READLINE_POINT="$(($READLINE_POINT + 1))"
 	fi
 }
-
-bind -x '"\C-xx": __readline_incdec_decrement'
-bind -x '"\C-xa": __readline_incdec_increment'
