@@ -12,6 +12,8 @@ modified.
 TODO
 
 Idea: ffmpeg stuff. concat.
+sed -n '39,54p' Alice\'s\ Adventures\ in\ Wonderland.txt
+ffmpeg -i Screen\ Recording.mov -to 3.57 Demo.mov
 
 
 ## Install
