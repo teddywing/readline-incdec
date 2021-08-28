@@ -9,11 +9,7 @@ The commands increment or decrement the closest number to the left of point. If
 point is to the left of the first number in the line, the first number is
 modified.
 
-TODO
-
-Idea: ffmpeg stuff. concat.
-sed -n '39,54p' Alice\'s\ Adventures\ in\ Wonderland.txt
-ffmpeg -i Screen\ Recording.mov -to 3.57 Demo.mov
+![Screencast](./Demo.gif)
 
 
 ## Install
