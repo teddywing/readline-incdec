@@ -11,6 +11,8 @@ modified.
 
 TODO
 
+Idea: ffmpeg stuff. concat.
+
 
 ## Install
 TODO
