@@ -2,3 +2,10 @@ Readline bindings to increment and decrement a number on the command line, like 
 
 2021.01.03:
 Try C-c and replace the number in a new shell line
+
+2021.08.28:
+Name that evokes incrementing as well as decrementing.
+
+Name ideas:
+* Incdec
+* Crement
