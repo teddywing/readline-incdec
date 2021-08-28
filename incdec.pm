@@ -28,7 +28,6 @@ sub incdec {
 	$is_backward ||= 0;
 
 	my $start_position = 0;
-	# my $previous_match_start = $point_position;
 	my $previous_match_start = 0;
 	my $i = 0;
 	while ($line =~ /(-?\d+)/g) {
@@ -64,14 +63,8 @@ sub incdec {
 		}
 	}
 
-	# Using `\G` when `pos` is 0 seems to cause occasional missed substitutions.
-	# if ($start_position > 0) {
-		pos($line) = $start_position;
-		$line =~ s/\G(-?\d+)/$1 + $increment_by/e;
-	# }
-	# else {
-	# 	$line =~ s/(-?\d+)/$1 + $increment_by/e;
-	# }
+	pos($line) = $start_position;
+	$line =~ s/\G(-?\d+)/$1 + $increment_by/e;
 
 	return ($line, $start_position);
 }
