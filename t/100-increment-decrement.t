@@ -213,7 +213,7 @@ is_deeply(
 );
 
 @want = incdec::incdec("sed -n '39,54p' Alice\'s\ Adventures\ in\ Wonderland.txt ", 1, 3, 1);
-@got = ("sed -n '40,54p' Alice\'s\ Adventures\ in\ Wonderland.txt ", 0);
+@got = ("sed -n '40,54p' Alice\'s\ Adventures\ in\ Wonderland.txt ", 8);
 is_deeply(
 	\@want,
 	\@got,
@@ -236,7 +236,7 @@ is_deeply(
 	'decrements the first integer with point at position 10 backward'
 );
 
-@want = incdec::incdec("sed -n '39,54p' Alice\'s\ Adventures\ in\ Wonderland.txt ", 1, 3, 0);
+@want = incdec::incdec("sed -n '39,54p' Alice\'s\ Adventures\ in\ Wonderland.txt ", 1, 3, 8);
 @got = ("sed -n '40,54p' Alice\'s\ Adventures\ in\ Wonderland.txt ", 8);
 is_deeply(
 	\@want,
