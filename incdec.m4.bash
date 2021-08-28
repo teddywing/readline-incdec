@@ -23,7 +23,7 @@ function __readline_incdec {
 	local increment_by="$1"
 	local backward="$2"
 
-	line=$(perl -s -e '
+	result="$(perl -s -e '
 INCLUDE_INCDEC_PL
 ' \
 		-- \
@@ -31,21 +31,31 @@ INCLUDE_INCDEC_PL
 		-increment_by="$increment_by" \
 		-point_position="$READLINE_POINT" \
 		-backward="$backward"
-	)
+	)"
 
-	READLINE_LINE="$line"
+	echo "$result"
 }
 
 # Increment the nearest number to the left of point by 1.
 function __readline_incdec_increment {
 	local old_line_length="${#READLINE_LINE}"
 
-	__readline_incdec 1 1
+	result="$(__readline_incdec 1 1)"
+
+	line="${result#*#}"
+	READLINE_LINE="$line"
 
 	local new_line_length="${#READLINE_LINE}"
 
+	local start_position="${result%#*}"
+	echo "$start_position .. $READLINE_POINT"
+
 	# If a negative sign was removed, keep point where it was.
-	if [ "$old_line_length" -gt "$new_line_length" ]; then
+	if [ \
+		"$old_line_length" -gt "$new_line_length" \
+		-a \
+		"$start_position" -le "$READLINE_POINT" \
+	]; then
 		READLINE_POINT="$(($READLINE_POINT - 1))"
 	fi
 }
@@ -54,13 +64,23 @@ function __readline_incdec_increment {
 function __readline_incdec_decrement {
 	local old_line_length="${#READLINE_LINE}"
 
-	__readline_incdec -1 1
+	result="$(__readline_incdec -1 1)"
+
+	line="${result#*#}"
+	READLINE_LINE="$line"
 
 	local new_line_length="${#READLINE_LINE}"
 
+	local start_position="${result%#*}"
+	echo "$start_position .. $READLINE_POINT"
+
 	# TODO: Point should only move when it's over the number. No, actually when it's >= the start of the number.
 	# If a negative sign was added, keep point where it was.
-	if [ "$old_line_length" -lt "$new_line_length" ]; then
+	if [ \
+		"$old_line_length" -lt "$new_line_length" \
+		-a \
+		"$start_position" -le "$READLINE_POINT" \
+	]; then
 		READLINE_POINT="$(($READLINE_POINT + 1))"
 	fi
 }

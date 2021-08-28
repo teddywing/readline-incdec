@@ -6,4 +6,4 @@ my ($output, $start_position) = incdec(
 	$point_position,
 	$backward
 );
-print $output;
+print "$start_position\#$output";
