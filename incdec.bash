@@ -102,7 +102,6 @@ function __readline_incdec_increment {
 	local new_line_length="${#READLINE_LINE}"
 
 	local start_position="${result%#*}"
-	echo "$start_position .. $READLINE_POINT"
 
 	# If a negative sign was removed, keep point where it was.
 	if [ \
@@ -126,9 +125,7 @@ function __readline_incdec_decrement {
 	local new_line_length="${#READLINE_LINE}"
 
 	local start_position="${result%#*}"
-	echo "$start_position .. $READLINE_POINT"
 
-	# TODO: Point should only move when it's over the number. No, actually when it's >= the start of the number.
 	# If a negative sign was added, keep point where it was.
 	if [ \
 		"$old_line_length" -lt "$new_line_length" \
