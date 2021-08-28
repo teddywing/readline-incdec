@@ -31,13 +31,21 @@ sub incdec {
 	$is_backward ||= 0;
 
 	my $start_position = 0;
+	# my $previous_match_start = $point_position;
 	my $previous_match_start = 0;
+	my $i = 0;
 	while ($line =~ /(-?\d+)/g) {
 		if ($is_backward) {
 			# Set start position to the current match start. This gives us the
 			# correct start position when incrementing the last number in a
 			# line.
 			$start_position = $-[0];
+
+			# Keep the start position of the first number if point is before
+			# the first number.
+			if ($i == 0 && $point_position < $-[0]) {
+				last;
+			}
 
 			# If point is not at the end, set start position to the number
 			# closest to the point position.
@@ -48,6 +56,7 @@ sub incdec {
 			}
 
 			$previous_match_start = $-[0];
+			$i++;
 		}
 		else {
 			if ($point_position < $+[0]) {
@@ -59,13 +68,13 @@ sub incdec {
 	}
 
 	# Using `\G` when `pos` is 0 seems to cause occasional missed substitutions.
-	if ($start_position > 0) {
+	# if ($start_position > 0) {
 		pos($line) = $start_position;
 		$line =~ s/\G(-?\d+)/$1 + $increment_by/e;
-	}
-	else {
-		$line =~ s/(-?\d+)/$1 + $increment_by/e;
-	}
+	# }
+	# else {
+	# 	$line =~ s/(-?\d+)/$1 + $increment_by/e;
+	# }
 
 	return ($line, $start_position);
 }
