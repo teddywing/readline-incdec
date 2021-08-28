@@ -104,12 +104,6 @@ is(
 );
 
 is(
-	incdec::incdec("sed -n '39,54p' Alice\'s\ Adventures\ in\ Wonderland.txt ", 1, 3, 1),
-	"sed -n '40,54p' Alice\'s\ Adventures\ in\ Wonderland.txt ",
-	'increments the first integer with point at position 3 backward'
-);
-
-is(
 	incdec::incdec('test -1 ', 1, 7, 1),
 	'test 0 ',
 	'increments the negative integer with point at position 7 backward'
@@ -167,6 +161,30 @@ is(
 	incdec::incdec('test 12 1 4', -2, 9, 1),
 	'test 12 -1 4',
 	'decrements the second integer by 2 with point at position 9 backward'
+);
+
+is(
+	incdec::incdec("sed -n '39,54p' Alice\'s\ Adventures\ in\ Wonderland.txt ", 1, 3, 1),
+	"sed -n '40,54p' Alice\'s\ Adventures\ in\ Wonderland.txt ",
+	'increments the first integer with point at position 3 backward'
+);
+
+is(
+	incdec::incdec("sed -n '39,54p' Alice\'s\ Adventures\ in\ Wonderland.txt ", 1, 8, 1),
+	"sed -n '40,54p' Alice\'s\ Adventures\ in\ Wonderland.txt ",
+	'increments the first integer with point at position 8 backward'
+);
+
+is(
+	incdec::incdec("sed -n '39,54p' Alice\'s\ Adventures\ in\ Wonderland.txt ", -1, 10, 1),
+	"sed -n '38,54p' Alice\'s\ Adventures\ in\ Wonderland.txt ",
+	'decrements the first integer with point at position 10 backward'
+);
+
+is(
+	incdec::incdec("sed -n '39,54p' Alice\'s\ Adventures\ in\ Wonderland.txt ", 1, 3, 0),
+	"sed -n '40,54p' Alice\'s\ Adventures\ in\ Wonderland.txt ",
+	'increments the first integer with point at position 3'
 );
 
 done_testing;

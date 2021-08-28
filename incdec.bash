@@ -58,8 +58,14 @@ sub incdec {
 		}
 	}
 
-	pos($line) = $start_position;
-	$line =~ s/\G([^-\d]*)(-?\d+)/$1 . ($2 + $increment_by)/e;
+	# Using `\G` when `pos` is 0 seems to cause occasional missed substitutions.
+	if ($start_position > 0) {
+		pos($line) = $start_position;
+		$line =~ s/\G(-?\d+)/$1 + $increment_by/e;
+	}
+	else {
+		$line =~ s/(-?\d+)/$1 + $increment_by/e;
+	}
 
 	return $line;
 }
