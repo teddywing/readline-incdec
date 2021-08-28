@@ -12,6 +12,16 @@ modified.
 ![Screencast](./Demo.gif)
 
 
+## Bindings
+Default bindings are provided, but they can also be customised by adding them
+manually. By default:
+
+| Binding | Action    |
+|---------|-----------|
+| `C-x a` | Increment |
+| `C-x x` | Decrement |
+
+
 ## Install
 TODO
 
