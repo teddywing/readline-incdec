@@ -67,10 +67,15 @@ sub incdec {
 		$line =~ s/(-?\d+)/$1 + $increment_by/e;
 	}
 
-	return $line;
+	return ($line, $start_position);
 }
 
-my $output = incdec($line, $increment_by, $point_position, $backward);
+my ($output, $start_position) = incdec(
+	$line,
+	$increment_by,
+	$point_position,
+	$backward
+);
 print $output;
 ' \
 		-- \
