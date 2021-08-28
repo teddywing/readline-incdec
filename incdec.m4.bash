@@ -58,6 +58,7 @@ function __readline_incdec_decrement {
 
 	local new_line_length="${#READLINE_LINE}"
 
+	# TODO: Point should only move when it's over the number. No, actually when it's >= the start of the number.
 	# If a negative sign was added, keep point where it was.
 	if [ "$old_line_length" -lt "$new_line_length" ]; then
 		READLINE_POINT="$(($READLINE_POINT + 1))"
