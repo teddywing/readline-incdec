@@ -104,6 +104,12 @@ is(
 );
 
 is(
+	incdec::incdec("sed -n '39,54p' Alice\'s\ Adventures\ in\ Wonderland.txt ", 1, 3, 1),
+	"sed -n '40,54p' Alice\'s\ Adventures\ in\ Wonderland.txt ",
+	'increments the first integer with point at position 3 backward'
+);
+
+is(
 	incdec::incdec('test -1 ', 1, 7, 1),
 	'test 0 ',
 	'increments the negative integer with point at position 7 backward'
