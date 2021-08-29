@@ -16,6 +16,9 @@
 # along with Incdec. If not, see <https://www.gnu.org/licenses/>.
 
 
+MAN_PAGE := doc/incdec.7
+
+
 .PHONY: all
 all: incdec.bash
 
@@ -32,3 +35,10 @@ incdec.pl: incdec.m4.pl incdec.pm
 .PHONY: test
 test:
 	prove -v
+
+
+.PHONY: doc
+doc: $(MAN_PAGE)
+
+$(MAN_PAGE): $(MAN_PAGE).txt
+	a2x --no-xmllint --format manpage $<

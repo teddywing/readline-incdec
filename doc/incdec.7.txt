@@ -1,0 +1,35 @@
+incdec(7)
+=========
+
+NAME
+----
+incdec - Readline bindings to increment and decrement numbers
+
+SYNOPSIS
+--------
+Incdec bindings
+
+DESCRIPTION
+-----------
+A pair of Readline bindings and Bash functions to quickly increment and
+decrement a number on the current command line.
+
+BINDINGS
+--------
+*__readline_incdec_decrement (C-x x)*::
+	Decrement the first number to the left of point by one. If no number
+	is on the left of point, the first number to the right of point is
+	decremented.
+
+*__readline_incdec_increment (C-x a)*::
+	Increment the first number to the left of point by one. If no number
+	is on the left of point, the first number to the right of point is
+	incremented.
+
+CUSTOM BINDINGS
+---------------
+Custom bindings can be defined by mapping to the increment and decrement
+functions. For example, this defines bindings for 'C-x -' and 'C-x +':
+
+	bind -x '"\C-x-": __readline_incdec_decrement'
+	bind -x '"\C-x+": __readline_incdec_increment'
