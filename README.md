@@ -27,6 +27,11 @@ Mac OS X users can install with Homebrew:
 
 	$ brew install teddywing/formulae/readline-incdec
 
+Or with MacPorts, after [adding a custom repository source][teddywing ports
+repository]:
+
+	$ sudo port install readline-incdec
+
 On other platforms, download the `incdec.bash` and, if desired,
 `incdec-bindings.bash` files.
 
@@ -43,6 +48,9 @@ bindings for `C-x -` and `C-x +`:
 
 	bind -x '"\C-x-": __readline_incdec_decrement'
 	bind -x '"\C-x+": __readline_incdec_increment'
+
+
+[teddywing ports repository]: https://github.com/teddywing/macports-ports#adding-this-repository-source
 
 
 ## License
