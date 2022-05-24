@@ -53,7 +53,7 @@ is_deeply(
 );
 
 @got = incdec::incdec('test A-02 0', -1);
-@want = ('test A-03 0', 7);
+@want = ('test A-01 0', 8);
 is_deeply(
 	\@got,
 	\@want,
