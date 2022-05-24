@@ -44,6 +44,22 @@ is_deeply(
 	'increments the first integer'
 );
 
+@got = incdec::incdec('test 012 0', 1);
+@want = ('test 013 0', 6);
+is_deeply(
+	\@got,
+	\@want,
+	'increments an integer with a leading zero'
+);
+
+@got = incdec::incdec('test A-02 0', -1);
+@want = ('test A-03 0', 7);
+is_deeply(
+	\@got,
+	\@want,
+	'increments a negative integer with a leading zero'
+);
+
 @got = incdec::incdec('test 12 0', 1, 6);
 @want = ('test 13 0', 5);
 is_deeply(
