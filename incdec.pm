@@ -30,7 +30,7 @@ sub incdec {
 	my $start_position = 0;
 	my $previous_match_start = 0;
 	my $i = 0;
-	while ($line =~ /(-?[1-9]\d*)/g) {
+	while ($line =~ /(-?([1-9]\d*|\d))/g) {
 		if ($is_backward) {
 			# Set start position to the current match start. This gives us the
 			# correct start position when incrementing the last number in a
@@ -64,7 +64,7 @@ sub incdec {
 	}
 
 	pos($line) = $start_position;
-	$line =~ s/\G(-?[1-9]\d*)/$1 + $increment_by/e;
+	$line =~ s/\G(-?([1-9]\d*|\d))/$1 + $increment_by/e;
 
 	return ($line, $start_position);
 }
