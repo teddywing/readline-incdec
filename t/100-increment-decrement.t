@@ -228,6 +228,14 @@ is_deeply(
 	'decrements the second integer by 2 with point at position 9 backward'
 );
 
+@got = incdec::incdec('test_99_A_-_03_[a30df7cf]', 1, 15, 1);
+@want = ('test_99_A_-_04_[a30df7cf]', 13);
+is_deeply(
+	\@got,
+	\@want,
+	'increments the second zero-prefixed integer by 1 with point at position 15 backward'
+);
+
 @got = incdec::incdec("sed -n '39,54p' Alice\'s\ Adventures\ in\ Wonderland.txt ", 1, 3, 1);
 @want = ("sed -n '40,54p' Alice\'s\ Adventures\ in\ Wonderland.txt ", 8);
 is_deeply(
