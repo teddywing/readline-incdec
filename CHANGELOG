@@ -1,0 +1,12 @@
+CHANGELOG
+=========
+
+v0.0.2 (2022-05-26):
+	Breaking changes:
+
+	* Keep leading zeros when incrementing and decrementing.
+
+v0.0.1 (2021-08-29):
+	First release.
+
+ vim:tw=80:comments=:fo+=n:formatlistpat=^\\s*\\*\\s*

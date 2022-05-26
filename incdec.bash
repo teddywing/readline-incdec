@@ -1,4 +1,4 @@
-# Copyright (c) 2021  Teddy Wing
+# Copyright (c) 2021–2022  Teddy Wing
 #
 # This file is part of Incdec.
 #
@@ -30,10 +30,12 @@ sub incdec {
 	$point_position ||= 0;
 	$is_backward ||= 0;
 
+	my $number_regex = '-?([1-9]\d*|0\D|0$)';
+
 	my $start_position = 0;
 	my $previous_match_start = 0;
 	my $i = 0;
-	while ($line =~ /(-?\d+)/g) {
+	while ($line =~ /($number_regex)/g) {
 		if ($is_backward) {
 			# Set start position to the current match start. This gives us the
 			# correct start position when incrementing the last number in a
@@ -67,7 +69,7 @@ sub incdec {
 	}
 
 	pos($line) = $start_position;
-	$line =~ s/\G(-?\d+)/$1 + $increment_by/e;
+	$line =~ s/\G($number_regex)/$1 + $increment_by/e;
 
 	return ($line, $start_position);
 }

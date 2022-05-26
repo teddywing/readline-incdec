@@ -1,6 +1,6 @@
 #!/usr/bin/env perl -w
 
-# Copyright (c) 2021  Teddy Wing
+# Copyright (c) 2021–2022  Teddy Wing
 #
 # This file is part of Incdec.
 #
@@ -42,6 +42,22 @@ is_deeply(
 	\@got,
 	\@want,
 	'increments the first integer'
+);
+
+@got = incdec::incdec('test 012 0', 1);
+@want = ('test 013 0', 6);
+is_deeply(
+	\@got,
+	\@want,
+	'increments an integer with a leading zero'
+);
+
+@got = incdec::incdec('test A-02 0', -1);
+@want = ('test A-01 0', 8);
+is_deeply(
+	\@got,
+	\@want,
+	'increments a negative integer with a leading zero'
 );
 
 @got = incdec::incdec('test 12 0', 1, 6);
@@ -210,6 +226,14 @@ is_deeply(
 	\@got,
 	\@want,
 	'decrements the second integer by 2 with point at position 9 backward'
+);
+
+@got = incdec::incdec('test_99_A_-_03_[a30df7cf]', 1, 15, 1);
+@want = ('test_99_A_-_04_[a30df7cf]', 13);
+is_deeply(
+	\@got,
+	\@want,
+	'increments the second zero-prefixed integer by 1 with point at position 15 backward'
 );
 
 @got = incdec::incdec("sed -n '39,54p' Alice\'s\ Adventures\ in\ Wonderland.txt ", 1, 3, 1);
