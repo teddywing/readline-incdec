@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with Incdec. If not, see <https://www.gnu.org/licenses/>.
 
-# Version: 0.0.1
+# Version: 0.0.2
 
 
 bind -x '"\C-xx": __readline_incdec_decrement'
