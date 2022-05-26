@@ -30,7 +30,7 @@ sub incdec {
 	$point_position ||= 0;
 	$is_backward ||= 0;
 
-	my $number_regex = '-?([1-9]\d*|0\D|0$)';
+	my $number_regex = q/-?([1-9]\d*|0\D|0$)/;
 
 	my $start_position = 0;
 	my $previous_match_start = 0;
