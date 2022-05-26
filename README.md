@@ -54,5 +54,5 @@ bindings for `C-x -` and `C-x +`:
 
 
 ## License
-Copyright © 2021 Teddy Wing. Licensed under the GNU GPLv3+ (see the included
-COPYING file).
+Copyright © 2021–2022 Teddy Wing. Licensed under the GNU GPLv3+ (see the
+included COPYING file).

@@ -1,6 +1,6 @@
 #!/usr/bin/env perl -w
 
-# Copyright (c) 2021  Teddy Wing
+# Copyright (c) 2021–2022  Teddy Wing
 #
 # This file is part of Incdec.
 #
