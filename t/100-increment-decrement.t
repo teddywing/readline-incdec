@@ -60,6 +60,14 @@ is_deeply(
 	'increments a negative integer with a leading zero'
 );
 
+@got = incdec::incdec('openssl x509 -inform DER -in codesign0 -text', 1);
+@want = ('openssl x509 -inform DER -in codesign1 -text', 37);
+is_deeply(
+	\@got,
+	\@want,
+	'increments a zero without removing the following character'
+);
+
 @got = incdec::incdec('test 12 0', 1, 6);
 @want = ('test 13 0', 5);
 is_deeply(
